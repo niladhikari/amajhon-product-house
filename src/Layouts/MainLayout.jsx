@@ -1,8 +1,9 @@
-import { Outlet } from "react-router-dom";
+import { NavLink, Outlet } from "react-router-dom";
+import Footer from "../Pages/Footer/Footer";
 
 const MainLayout = () => {
   return (
-    <div>
+    <div className="">
       <section className="py-5 shadow-lg flex justify-between px-10 items-center">
         <div>
           <h2 className="text-3xl font-bold">AmaJhon</h2>
@@ -10,18 +11,40 @@ const MainLayout = () => {
         <nav className="">
           <ul className="flex gap-5">
             <li>
-              <a href="/">Home</a>
+              <NavLink
+                to="/"
+                className={({ isActive, isPending }) =>
+                  isPending ? "pending" : isActive ? "bg-green-400" : ""
+                }
+              >Home
+              </NavLink>
             </li>
             <li>
-              <a href="/products">Product</a>
+            <NavLink
+                to="/products"
+                className={({ isActive, isPending }) =>
+                  isPending ? "pending" : isActive ? "bg-green-400" : ""
+                }
+              >Products
+              </NavLink>
             </li>
             <li>
-              <a href="/dashboard">Dashboard</a>
+            <NavLink
+                to="/dashboard"
+                className={({ isActive, isPending }) =>
+                  isPending ? "pending" : isActive ? "bg-green-400" : ""
+                }
+              >Dashboard
+              </NavLink>
             </li>
           </ul>
         </nav>
       </section>
-      <Outlet></Outlet>
+      <div className="min-h-screen">
+        <Outlet></Outlet>
+      </div>
+
+      <Footer></Footer>
     </div>
   );
 };
